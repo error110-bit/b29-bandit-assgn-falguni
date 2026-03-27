@@ -1,0 +1,26 @@
+level 0 - read the manual of ssh using man ssh and then logged in using -l and -p tags for username and port
+level 0-1 - using ls command got readme file and used cat to read the contents of the file
+level 1-2 - learned to work with files with a dashed filename using the given helpful reading material on the site
+level 2-3 - used helpful reading material to open the file
+level 3-4 - used ls -a command to see the hidden file (command was in the resources provided)
+level 4-5 - there were 10 files in the directory and after opening every file only one contained the password made up of letters and numbers (file07)
+level 5-6 - read the man of find command and used it to find the file which satisfied all the 3 conditions(hidden file in maybehere07 directory inside inhere directory)
+level 6-7 - used / to search the entire server and specified the conditions using find command
+level 7-8 - used grep command to find the line containing the word
+level 8-9 - used sort command to group the repeated lines and then used uniq (sort data.txt| uniq -u) to print only the unique line 
+level 9-10 - used strings -a command which scanned the whole file and printed out strings from the file(they are human readable) and only one matched the condition as stated on the site( preceded by many = sign)
+level 10-11 - used base64 -d command to decode the password
+level 11-12 - used tr command to map A to N and a to n and N maps back to A using tr "A-Za-z" "N-ZA-Mn-za-m"
+level 12-13 - first made a temporary directory using mktemp -d then copied the data.txt to it and renamed it then using xxd -r , reverted the hex dump code and checked the file type using file option and then it was gzip so renamed the file and added .gz and then unzipped it and repeated the same steps for bzip2 and tar too until the file type was ASCII text 
+level 13-14 - got the private ssh key and saved it locally then did chmod 600 and then accessed bandit14 via that locally
+level 14-15 - used telnet localhost 30000 (syntax in manual of telnet) to connect to localhost and pasted the password to get the password for the next level
+level 15-16 - used openssl s_client command to connect to the port on localhost and then pasted the password
+level 16-17 - used nmap to find 5 open ports and then only 2 of them spoke ssl/tls (only 2 responded to openssl s_client command) then only one gave the private key 
+level 17-18 - used diff to find the unique line among the two files
+level 18-19 - executed the cat readme command along with the ssh command so the host logs in, the cat command is instantly executed and the host logs out instantly, we get the password
+level 19-20 - used ./bandit20-do (as we needed to run the file in current home directory not system's and then it told us that it runs a command as another user so used it to get the password
+level 20-21 - opened a random port using nc -l(so it listens) in one terminal and gave it the password for level 20 and in another terminal made a connection to that port using the setuid binary in home directory
+level 21-22 - went into the mentioned directory and opened file related to bandit22 and there it gave path for another file opened that and got the password for the next level
+level 22-23 - looked inside cronjob_bandit23 and followed the shell scripts commands and got the password 
+level 23-24 - looked inside cronjob_bandit24 then created a temporary directory and made a file inside it and gave it all the permissions(chmod 777) and wrote a script that can access password from bandit24 and made it executable and then copied it to the spool folder as cronjob was running the script as bandit24 it could perform the job and give us the password and the script gets deleetd afterwards
+level 24-25 - created a for loop that prints combinations from 0000 to 9999 and fed the output to port 30002 with the password of level 23-24
